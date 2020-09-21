@@ -110,8 +110,10 @@ class _QuizPageState extends State<QuizPage> {
   void answered(bool userAnswerValue) {
     setState(() {
       if (userAnswerValue == questions[questionNumber].correctAnswer) {
+        // user got it right
         scoreKeeper.add(new CorrectAnswer());
       } else {
+        // user got it wrong
         scoreKeeper.add(new WrongAnswer());
       }
       questionNumber++;
