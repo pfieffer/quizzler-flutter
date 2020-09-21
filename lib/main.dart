@@ -27,8 +27,8 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-
   int questionNumber = 0;
+  QuizBrain quizBrain = QuizBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                QuizBrain().questions[questionNumber].questionText,
+                quizBrain.getQuestionText(questionNumber),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -100,8 +100,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void answered(bool userAnswerValue) {
     setState(() {
-      if (userAnswerValue ==
-          QuizBrain().questions[questionNumber].correctAnswer) {
+      if (userAnswerValue == quizBrain.getCorrectAnswer(questionNumber)) {
         // user got it right
         scoreKeeper.add(new CorrectAnswer());
       } else {
