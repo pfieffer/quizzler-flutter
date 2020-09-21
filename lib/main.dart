@@ -42,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(questionNumber),
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -100,14 +100,14 @@ class _QuizPageState extends State<QuizPage> {
 
   void answered(bool userAnswerValue) {
     setState(() {
-      if (userAnswerValue == quizBrain.getCorrectAnswer(questionNumber)) {
+      if (userAnswerValue == quizBrain.getCorrectAnswer()) {
         // user got it right
         scoreKeeper.add(new CorrectAnswer());
       } else {
         // user got it wrong
         scoreKeeper.add(new WrongAnswer());
       }
-      questionNumber++;
+      quizBrain.nextQuestion();
     });
   }
 }
