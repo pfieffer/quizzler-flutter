@@ -31,11 +31,15 @@ class QuizBrain {
         true)
   ];
 
-  void nextQuestion() {
+  /// Increments the [_questionNumber] if there is a question at that index
+  /// Returns true if there is a question at that index else false
+  bool nextQuestion() {
     if (_questionNumber < _questionBank.length - 1) {
       _questionNumber++;
+      return true;
     } else {
       print('The brain has no more questions');
+      return false;
     }
   }
 
@@ -45,5 +49,9 @@ class QuizBrain {
 
   bool getCorrectAnswer() {
     return _questionBank[_questionNumber].correctAnswer;
+  }
+
+  void resetQuizQuestions() {
+    _questionNumber = 0;
   }
 }
